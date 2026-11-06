@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pablo García · Automatización con IA</title>
+<meta name="description" content="Bots con IA para WhatsApp e Instagram, CRM y sistemas a medida para pequeñas empresas. Portfolio de Pablo García, Mar del Plata, Argentina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mist:#EEF1EE;
+  --paper:#F8FAF8;
+  --ink:#14232A;
+  --slate:#56676C;
+  --rule:#C7D0CD;
+  --teal:#2C6B66;
+  --signal:#C97A12;
+  --signal-soft:#F4E3C6;
+  --teal-soft:#D6E7E3;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --mist:#121C21; --paper:#18242A; --ink:#E6ECEA; --slate:#9DACAE; --rule:#2D3B41;
+    --teal:#6FB3AA; --signal:#E9A54A; --signal-soft:#3A2F1C; --teal-soft:#1E3533;
+  }
+}
+:root[data-theme="dark"]{
+  --mist:#121C21; --paper:#18242A; --ink:#E6ECEA; --slate:#9DACAE; --rule:#2D3B41;
+  --teal:#6FB3AA; --signal:#E9A54A; --signal-soft:#3A2F1C; --teal-soft:#1E3533;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:17px;line-height:1.6;font-variation-settings:"wdth" 100}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.wide{font-variation-settings:"wdth" 125}
+.narrow{font-variation-settings:"wdth" 75}
+
+/* top */
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
+.top .name{font-weight:700;font-variation-settings:"wdth" 125;letter-spacing:-.01em}
+.top nav{display:flex;gap:22px;flex-wrap:wrap}
+.top nav a{text-decoration:none;color:var(--slate)}
+.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(34px,5.4vw,64px);line-height:1.04;margin:0 0 22px;font-weight:780;font-variation-settings:"wdth" 120;letter-spacing:-.025em;max-width:18ch}
+.hero p.lead{font-size:clamp(18px,2vw,21px);color:var(--slate);max-width:56ch;margin:0 0 34px}
+.flow{width:100%;height:auto;display:block;margin:10px 0 8px}
+.flow .node rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.flow .node.hot rect{fill:var(--signal-soft);stroke:var(--signal)}
+.flow text{fill:var(--ink);font-family:"Archivo",sans-serif;font-size:15px}
+.flow text.sub{fill:var(--slate);font-size:12.5px}
+.flow .line{stroke:var(--ink);stroke-width:1.5;fill:none}
+.flow .dash{stroke:var(--rule);stroke-width:1.5;stroke-dasharray:4 5;fill:none}
+.flow .dot{fill:var(--signal)}
+.flow-caption{font-size:14px;color:var(--slate);margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:30px;font-size:15px;color:var(--slate)}
+.facts strong{color:var(--ink);font-weight:650}
+
+/* sections */
+section{padding:72px 0;border-bottom:1px solid var(--rule)}
+section > .wrap > h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin:0 0 10px;font-weight:760;font-variation-settings:"wdth" 118;letter-spacing:-.02em}
+.intro{color:var(--slate);max-width:60ch;margin:0 0 44px}
+
+/* cases */
+.case{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;padding:44px 0;border-top:1px solid var(--rule)}
+.case:first-of-type{border-top:0;padding-top:8px}
+.case h3{font-size:24px;line-height:1.2;margin:10px 0 12px;font-weight:720;font-variation-settings:"wdth" 108;letter-spacing:-.01em}
+.case p{margin:0 0 14px;max-width:52ch}
+.case ul{margin:0 0 16px;padding-left:18px}
+.case li{margin:4px 0}
+.status{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;border:1.5px solid currentColor}
+.s-proto{color:var(--teal);background:var(--teal-soft);border-color:transparent}
+.s-idea{color:var(--signal)}
+.s-dev{color:var(--slate)}
+.s-live{color:#fff;background:var(--teal);border-color:transparent}
+.tech{font-size:14px;color:var(--slate)}
+.tech b{color:var(--ink);font-weight:600}
+.shot{margin:0}
+.shot img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--rule);box-shadow:0 18px 40px -24px rgba(20,35,42,.45)}
+.shot figcaption{font-size:13.5px;color:var(--slate);margin-top:8px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:6px;background:none;cursor:pointer;overflow:hidden;line-height:0}
+.thumbs button[aria-pressed="true"]{border-color:var(--signal)}
+.thumbs img{width:100%;height:auto;display:block}
+.diagram{align-self:start;background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:18px}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram .box{fill:var(--mist);stroke:var(--ink);stroke-width:1.3}
+.diagram .box.alt{fill:var(--signal-soft);stroke:var(--signal)}
+.diagram .box.ok{fill:var(--teal-soft);stroke:var(--teal)}
+.diagram text{fill:var(--ink);font-family:"Archivo",sans-serif;font-size:13px}
+.diagram text.s{fill:var(--slate);font-size:11.5px}
+.diagram .ar{stroke:var(--ink);stroke-width:1.3;fill:none;marker-end:url(#arw)}
+.diagram .ar.alt{stroke:var(--signal);stroke-dasharray:4 4}
+
+/* repos */
+.repos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.repo{padding:22px 0;border-top:1px solid var(--rule)}
+.repo h3{margin:0 0 6px;font-size:19px;font-weight:700;font-variation-settings:"wdth" 108}
+.repo h3 a{text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:var(--rule)}
+.repo h3 a:hover{text-decoration-color:var(--signal)}
+.repo p{margin:0 0 6px;color:var(--slate);font-size:15.5px}
+.repo .kind{font-size:13px;color:var(--teal);font-weight:600}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--ink);padding-top:14px}
+.steps li::before{content:counter(s);display:block;font-size:40px;font-weight:780;font-variation-settings:"wdth" 125;line-height:1;margin-bottom:10px;color:var(--signal)}
+.steps h3{margin:0 0 6px;font-size:18px}
+.steps p{margin:0;color:var(--slate);font-size:15.5px}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.stack h3{font-size:16px;margin:0 0 10px;font-weight:700}
+.stack ul{list-style:none;margin:0;padding:0}
+.stack li{padding:7px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+.stack .learning li{color:var(--slate)}
+
+/* about + contact */
+.about{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start}
+.about p{max-width:60ch;margin:0 0 16px}
+.contact a.btn{display:inline-block;background:var(--ink);color:var(--mist);text-decoration:none;padding:13px 22px;border-radius:8px;font-weight:650;margin:0 10px 10px 0}
+.contact a.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.contact a.btn:hover{background:var(--teal)}
+.contact a.btn.ghost:hover{background:var(--teal-soft)}
+footer{padding:28px 0 48px;font-size:14px;color:var(--slate)}
+
+@media (max-width:860px){
+  .case,.about{grid-template-columns:1fr;gap:24px}
+  .repos{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stack{grid-template-columns:1fr}
+  .top nav{gap:14px}
+}
+.flow-v{display:none;list-style:none;margin:6px 0 14px;padding:0}
+.flow-v li{position:relative;background:var(--paper);border:1.5px solid var(--ink);border-radius:10px;padding:10px 14px;margin-bottom:22px}
+.flow-v li:not(:last-child)::after{content:"";position:absolute;left:24px;bottom:-23px;width:1.5px;height:21px;background:var(--ink)}
+.flow-v li.hot{background:var(--signal-soft);border-color:var(--signal)}
+.flow-v b{display:block;font-weight:600}
+.flow-v span{font-size:14px;color:var(--slate)}
+@media (max-width:640px){ .flow{display:none} .flow-v{display:block} }
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .steps{grid-template-columns:1fr}
+  .top{flex-direction:column;align-items:flex-start;gap:8px}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} .flow .dot{display:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="name">Pablo García</span>
+    <nav aria-label="Secciones">
+      <a href="#casos">Casos</a>
+      <a href="#codigo">Código</a>
+      <a href="#como-trabajo">Cómo trabajo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Automatizo la atención y los procesos de pequeñas empresas con IA.</h1>
+    <p class="lead">Armo bots para WhatsApp e Instagram que responden, califican cada consulta y la pasan a la persona correcta. También desarrollo sistemas a medida: CRM, pedidos online, cartas digitales y paneles de gestión.</p>
+
+    <svg class="flow" viewBox="0 0 1060 150" role="img" aria-labelledby="flow-t flow-d">
+      <title id="flow-t">Recorrido de una consulta</title>
+      <desc id="flow-d">Una consulta llega por WhatsApp o Instagram, el asistente con IA pregunta lo necesario, la consulta se califica y pasa al vendedor que corresponde. Lo que no sirve se filtra.</desc>
+      <path id="track" class="line" d="M190 60 H290 M480 60 H580 M770 60 H870"/>
+      <path class="dash" d="M675 92 V128 H780"/>
+      <g class="node"><rect x="10" y="22" width="180" height="76" rx="10"/><text x="28" y="54">Llega una consulta</text><text class="sub" x="28" y="76">por WhatsApp o Instagram</text></g>
+      <g class="node"><rect x="290" y="22" width="190" height="76" rx="10"/><text x="308" y="54">El asistente pregunta</text><text class="sub" x="308" y="76">qué busca, zona, presupuesto</text></g>
+      <g class="node"><rect x="580" y="22" width="190" height="76" rx="10"/><text x="598" y="54">Se califica y se carga</text><text class="sub" x="598" y="76">en el CRM con su etapa</text></g>
+      <g class="node hot"><rect x="870" y="22" width="180" height="76" rx="10"/><text x="888" y="54">Pasa al vendedor</text><text class="sub" x="888" y="76">con la charla completa</text></g>
+      <text class="sub" x="790" y="132">Lo que no sirve (CVs, spam) se filtra solo</text>
+      <circle class="dot" r="7" cx="190" cy="60">
+        <animate attributeName="cx" values="190;290;290;480;580;580;770;870;870" keyTimes="0;.12;.24;.36;.48;.6;.72;.84;1" dur="4.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;1;0;0;1;1;0;0;1" keyTimes="0;.12;.13;.36;.37;.6;.61;.84;1" dur="4.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <ol class="flow-v" aria-hidden="true">
+      <li><b>Llega una consulta</b><span>por WhatsApp o Instagram</span></li>
+      <li><b>El asistente pregunta</b><span>qué busca, zona, presupuesto</span></li>
+      <li><b>Se califica y se carga</b><span>en el CRM con su etapa; lo que no sirve se filtra</span></li>
+      <li class="hot"><b>Pasa al vendedor</b><span>con la charla completa</span></li>
+    </ol>
+    <p class="flow-caption">Así recorre una consulta los sistemas que armo.</p>
+
+    <div class="facts">
+      <span><strong>Mar del Plata, Argentina</strong>, trabajo remoto</span>
+      <span><strong>Más de 10 años</strong> en calidad y producción industrial</span>
+      <span>Español nativo</span>
+    </div>
+  </div>
+</div>
+
+<section id="casos">
+  <div class="wrap">
+    <h2>Casos</h2>
+    <p class="intro">Hay proyectos hechos para clientes reales y prototipos propios. Por confidencialidad no muestro nombres, marcas ni datos de ningún cliente: solo el rubro. Cada caso dice con honestidad hasta dónde llegó.</p>
+
+    <article class="case">
+      <div>
+        <span class="status s-proto">Prototipo propio, datos ficticios</span>
+        <h3>Bot de WhatsApp e Instagram con CRM de ventas</h3>
+        <p>Para una inmobiliaria que recibe consultas todo el día y pierde tiempo filtrando. El asistente responde al instante, califica cada consulta por operación, zona y presupuesto, y la deriva al asesor de esa zona.</p>
+        <ul>
+          <li>Embudo por etapas con valor, tareas y alertas de leads estancados</li>
+          <li>Cada asesor ve solo lo suyo; la gerencia ve todo</li>
+          <li>Tablero con conversión, embudo y meta mensual</li>
+        </ul>
+        <p class="tech"><b>Hecho con</b> Next.js, TypeScript, PostgreSQL, WhatsApp Cloud API, Instagram (API de Meta), OpenAI y Docker.</p>
+      </div>
+      <figure class="shot">
+        <img id="crm-main" src="img/01-crm-embudo.jpg" alt="Tablero kanban del CRM con leads en las etapas Nuevo, Calificado, Visita agendada y Propuesta enviada" width="1280" height="678">
+        <figcaption id="crm-cap">Embudo de ventas con los leads de la inmobiliaria ficticia "Alto Horizonte".</figcaption>
+        <div class="thumbs" role="group" aria-label="Más capturas del CRM">
+          <button type="button" aria-pressed="false" data-src="img/02-bandeja-valeria.jpg" data-cap="Bandeja: el asistente califica la consulta y la pasa al asesor, que coordina la visita." data-alt="Conversación de WhatsApp donde el asistente califica y deriva al asesor"><img src="img/02-bandeja-valeria.jpg" alt="Ver la bandeja de conversaciones" loading="lazy"></button>
+          <button type="button" aria-pressed="false" data-src="img/03-ficha-lead.jpg" data-cap="Ficha del lead: avance por etapas, tiempo de primer contacto, línea de tiempo y próxima acción." data-alt="Ficha de un lead con su línea de tiempo y próxima acción"><img src="img/03-ficha-lead.jpg" alt="Ver la ficha de un lead" loading="lazy"></button>
+          <button type="button" aria-pressed="false" data-src="img/04-asesores.jpg" data-cap="Asesores con su especialidad: el bot la usa para decidir a quién derivar." data-alt="Lista de asesores con su especialidad y permisos"><img src="img/04-asesores.jpg" alt="Ver los asesores" loading="lazy"></button>
+          <button type="button" aria-pressed="false" data-src="img/05-tablero-gerente.jpg" data-cap="Tablero de la gerencia: leads del período, tasa de cierre y meta del mes. Datos de ejemplo." data-alt="Tablero con leads entrantes, ganados, perdidos y tasa de cierre"><img src="img/05-tablero-gerente.jpg" alt="Ver el tablero de la gerencia" loading="lazy"></button>
+        </div>
+      </figure>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-proto">Bot funcional, probado de punta a punta</span>
+        <h3>Cotizador de seguros de moto por WhatsApp</h3>
+        <p>Para un productor de seguros que cotizaba a mano cada moto. El cliente manda por WhatsApp una foto de la cédula; la IA lee marca, modelo y año, y el bot arma seis opciones de cobertura con su precio mensual.</p>
+        <ul>
+          <li>Pide nombre, DNI y email cuando el cliente elige una cobertura</li>
+          <li>Guarda cada cotización en una base de datos y en una planilla para el equipo</li>
+          <li>Recuerda en qué paso está cada conversación</li>
+        </ul>
+        <p class="tech"><b>Hecho con</b> n8n, IA con visión para leer documentos, PostgreSQL, Google Sheets y WhatsApp.</p>
+      </div>
+      <figure class="shot">
+        <img src="img/06-cotizador-flujo.png" alt="Flujo en n8n del cotizador: lectura de cédula y DNI con IA, búsqueda de la moto, cotización, mensajes y guardado" width="1600" height="546" loading="lazy">
+        <figcaption>El flujo real en n8n. Se ocultaron los nombres que identificaban al cliente.</figcaption>
+      </figure>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-live">Implementado en período de prueba</span>
+        <h3>Asistente con IA para un hotel boutique</h3>
+        <p>Para un hotel chico que recibía consultas por Instagram, WhatsApp y email y no llegaba a responder todas. El asistente contesta las preguntas frecuentes al instante y pasa la conversación al encargado cuando hay intención de reservar.</p>
+        <ul>
+          <li>Responde con la información del hotel, sin inventar precios ni disponibilidad</li>
+          <li>Todos los canales llegan a una sola bandeja</li>
+          <li>Estuvo en producción durante el período de prueba</li>
+        </ul>
+        <p class="tech"><b>Hecho con</b> n8n, un modelo de IA, API de Instagram y WhatsApp, y Gmail.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="Las consultas de Instagram, WhatsApp y email llegan al asistente con IA, que responde y deriva al encargado cuando hay intención de reservar.">
+        <svg viewBox="0 0 560 210" aria-hidden="true">
+          <rect class="box" x="10" y="20" width="150" height="70" rx="8"/><text x="24" y="44">Instagram</text><text x="24" y="62">WhatsApp</text><text x="24" y="80">Email</text>
+          <rect class="box alt" x="200" y="20" width="160" height="70" rx="8"/><text x="214" y="50">Asistente con IA</text><text class="s" x="214" y="70">responde lo frecuente</text>
+          <rect class="box" x="390" y="20" width="160" height="70" rx="8"/><text x="404" y="50">Bandeja única</text><text class="s" x="404" y="70">todos los canales juntos</text>
+          <rect class="box ok" x="390" y="132" width="160" height="58" rx="8"/><text x="404" y="157">Pasa al encargado</text><text class="s" x="404" y="176">cuando quiere reservar</text>
+          <path class="ar" d="M160 55 H198" style="color:var(--ink)"/>
+          <path class="ar" d="M360 55 H388" style="color:var(--ink)"/>
+          <path class="ar" d="M470 90 V130" style="color:var(--ink)"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-proto">Desarrollado y probado en entorno de pruebas</span>
+        <h3>CRM de ventas a medida para una empresa de salud</h3>
+        <p>Para una empresa de servicios de salud que recibe consultas por Facebook, Instagram y WhatsApp mezcladas con mensajes que no son ventas. El sistema filtra lo que no sirve y carga cada consulta real en un embudo por etapas.</p>
+        <ul>
+          <li>Descarta solo lo que no es venta (currículums, proveedores, spam)</li>
+          <li>Etapas, tareas, historial y alertas de consultas sin atender</li>
+          <li>Cada vendedor ve lo suyo; la gerencia ve todo</li>
+        </ul>
+        <p class="tech"><b>Hecho con</b> Next.js, TypeScript, PostgreSQL, API de Meta y un modelo de IA.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="Las consultas de Facebook, Instagram y WhatsApp pasan por un filtro con IA, entran al CRM por etapas y cada vendedor y la gerencia ven lo que les corresponde.">
+        <svg viewBox="0 0 560 210" aria-hidden="true">
+          <rect class="box" x="10" y="20" width="150" height="70" rx="8"/><text x="24" y="44">Facebook</text><text x="24" y="62">Instagram</text><text x="24" y="80">WhatsApp</text>
+          <rect class="box alt" x="200" y="20" width="160" height="70" rx="8"/><text x="214" y="50">Filtro con IA</text><text class="s" x="214" y="70">descarta lo que no es venta</text>
+          <rect class="box" x="390" y="20" width="160" height="70" rx="8"/><text x="404" y="50">CRM por etapas</text><text class="s" x="404" y="70">tareas, historial, alertas</text>
+          <rect class="box ok" x="390" y="132" width="160" height="58" rx="8"/><text x="404" y="157">Vendedor y gerente</text><text class="s" x="404" y="176">cada uno ve lo suyo</text>
+          <path class="ar" d="M160 55 H198" style="color:var(--ink)"/>
+          <path class="ar" d="M360 55 H388" style="color:var(--ink)"/>
+          <path class="ar" d="M470 90 V130" style="color:var(--ink)"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-proto">Prototipo presentado al cliente</span>
+        <h3>Pedidos por chat para una cafetería</h3>
+        <p>Para un café que vende para llevar y se satura en los horarios pico. El cliente pide desde el celular en un chat, el asistente lo reconoce y le sugiere lo de siempre, y la cocina ve cada pedido en una pantalla de comandas.</p>
+        <ul>
+          <li>El cliente recibe avisos: "en preparación", "listo para retirar"</li>
+          <li>Tiempo estimado según la cola de pedidos</li>
+          <li>El dueño cambia precios y productos sin tocar código</li>
+        </ul>
+        <p class="tech"><b>Pensado con</b> un chat web, una base de datos simple y un panel de comandas; se puede sumar WhatsApp.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="Flujo de un pedido: el cliente pide por chat, el asistente confirma, el pedido entra a la pantalla de comandas, y el cliente recibe avisos hasta retirarlo.">
+        <svg viewBox="0 0 560 250" aria-hidden="true">
+          <defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker></defs>
+          <rect class="box" x="10" y="20" width="150" height="58" rx="8"/><text x="24" y="45">Cliente pide</text><text class="s" x="24" y="64">desde el celular</text>
+          <rect class="box" x="205" y="20" width="150" height="58" rx="8"/><text x="219" y="45">Asistente confirma</text><text class="s" x="219" y="64">producto, total, retiro</text>
+          <rect class="box alt" x="400" y="20" width="150" height="58" rx="8"/><text x="414" y="45">Pantalla de cocina</text><text class="s" x="414" y="64">pedido en la cola</text>
+          <rect class="box ok" x="205" y="160" width="345" height="58" rx="8"/><text x="219" y="185">Avisos al cliente</text><text class="s" x="219" y="204">en preparación, listo para retirar, tiempo estimado</text>
+          <rect class="box" x="10" y="160" width="150" height="58" rx="8"/><text x="24" y="185">Panel del dueño</text><text class="s" x="24" y="204">precios y productos</text>
+          <path class="ar" d="M160 49 H203" style="color:var(--ink)"/>
+          <path class="ar" d="M355 49 H398" style="color:var(--ink)"/>
+          <path class="ar" d="M475 78 V158" style="color:var(--ink)"/>
+          <path class="ar alt" d="M85 160 V80" style="color:var(--signal)"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-proto">Prototipo funcional</span>
+        <h3>Carta digital con QR en varios idiomas</h3>
+        <p>Para restaurantes y cafés con turistas. Un QR en la mesa abre la carta en el idioma del teléfono; el dueño cambia precios desde un panel y el QR impreso sigue sirviendo.</p>
+        <ul>
+          <li>Traducción automática de platos y descripciones</li>
+          <li>Fotos de los productos generadas o mejoradas con IA</li>
+          <li>Se comparte por link en redes y WhatsApp</li>
+        </ul>
+        <p class="tech"><b>Pensado con</b> un sitio liviano en Cloudflare, un panel de carga y traducción con IA.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="El dueño carga productos en un panel, la IA traduce y genera fotos, y el cliente escanea el QR y ve la carta en su idioma.">
+        <svg viewBox="0 0 560 210" aria-hidden="true">
+          <rect class="box" x="10" y="20" width="160" height="58" rx="8"/><text x="24" y="45">Panel del dueño</text><text class="s" x="24" y="64">productos y precios</text>
+          <rect class="box alt" x="200" y="20" width="160" height="58" rx="8"/><text x="214" y="45">IA</text><text class="s" x="214" y="64">traduce y mejora fotos</text>
+          <rect class="box ok" x="390" y="20" width="160" height="58" rx="8"/><text x="404" y="45">Carta publicada</text><text class="s" x="404" y="64">mismo QR siempre</text>
+          <rect class="box" x="390" y="132" width="160" height="58" rx="8"/><text x="404" y="157">Cliente escanea</text><text class="s" x="404" y="176">la ve en su idioma</text>
+          <path class="ar" d="M170 49 H198" style="color:var(--ink)"/>
+          <path class="ar" d="M360 49 H388" style="color:var(--ink)"/>
+          <path class="ar" d="M470 130 V80" style="color:var(--ink)"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-idea">Propuesta y diseño presentados</span>
+        <h3>Inscripciones por WhatsApp con lectura de documentos</h3>
+        <p>Para un centro de formación que recibe cientos de mensajes por día y responde con demora. El asistente pide los documentos, la IA los lee y verifica, y el sistema decide qué curso corresponde, cobra y asigna turno.</p>
+        <ul>
+          <li>Si un documento falta o no se lee, lo vuelve a pedir</li>
+          <li>Reglas configurables: requisitos por curso, vencimientos, importes</li>
+          <li>Los casos dudosos pasan a una persona</li>
+        </ul>
+        <p class="tech"><b>Pensado con</b> WhatsApp Cloud API, lectura de imágenes con IA, un motor de reglas y un calendario de turnos.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="Flujo: el alumno elige el curso, envía documentos, la IA los lee y valida, el motor de reglas define curso e importe, se valida el pago y se asigna turno. Si hay inconsistencias, pasa a una persona.">
+        <svg viewBox="0 0 560 260" aria-hidden="true">
+          <rect class="box" x="10" y="16" width="160" height="54" rx="8"/><text x="24" y="40">Elige el curso</text><text class="s" x="24" y="58">por WhatsApp</text>
+          <rect class="box" x="200" y="16" width="160" height="54" rx="8"/><text x="214" y="40">Envía documentos</text><text class="s" x="214" y="58">foto o PDF</text>
+          <rect class="box alt" x="390" y="16" width="160" height="54" rx="8"/><text x="404" y="40">IA lee y valida</text><text class="s" x="404" y="58">si falta, lo vuelve a pedir</text>
+          <rect class="box" x="390" y="108" width="160" height="54" rx="8"/><text x="404" y="132">Reglas del curso</text><text class="s" x="404" y="150">requisitos e importe</text>
+          <rect class="box" x="200" y="108" width="160" height="54" rx="8"/><text x="214" y="132">Valida el pago</text><text class="s" x="214" y="150">comprobante vs. importe</text>
+          <rect class="box ok" x="10" y="108" width="160" height="54" rx="8"/><text x="24" y="132">Turno confirmado</text><text class="s" x="24" y="150">día, hora y dirección</text>
+          <rect class="box" x="200" y="200" width="350" height="44" rx="8"/><text x="214" y="227">Casos dudosos → una persona los revisa</text>
+          <path class="ar" d="M170 43 H198" style="color:var(--ink)"/>
+          <path class="ar" d="M360 43 H388" style="color:var(--ink)"/>
+          <path class="ar" d="M470 70 V106" style="color:var(--ink)"/>
+          <path class="ar" d="M390 135 H362" style="color:var(--ink)"/>
+          <path class="ar" d="M200 135 H172" style="color:var(--ink)"/>
+          <path class="ar alt" d="M470 162 V198" style="color:var(--signal)"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="status s-dev">En desarrollo</span>
+        <h3>Agente que busca oportunidades de trabajo</h3>
+        <p>Un agente propio que revisa todos los días avisos de proyectos, los puntúa según lo que sé hacer y me manda los mejores por Telegram con un borrador de propuesta. Nunca envía nada solo: yo apruebo cada contacto.</p>
+        <ul>
+          <li>Puntaje por encaje, idioma, presupuesto y competencia</li>
+          <li>Registro de cada oportunidad en una planilla</li>
+          <li>Límite diario de búsquedas y costo</li>
+        </ul>
+        <p class="tech"><b>Hecho con</b> n8n en servidor propio, un agente de IA, Google Sheets y Telegram.</p>
+      </div>
+      <div class="diagram" role="img" aria-label="Un disparador diario inicia la búsqueda de avisos, la IA filtra y puntúa, se guarda en una planilla y se envía un resumen por Telegram para aprobar.">
+        <svg viewBox="0 0 560 200" aria-hidden="true">
+          <rect class="box" x="10" y="20" width="120" height="54" rx="8"/><text x="22" y="44">Todos los días</text><text class="s" x="22" y="62">8:00</text>
+          <rect class="box" x="150" y="20" width="120" height="54" rx="8"/><text x="162" y="44">Busca avisos</text><text class="s" x="162" y="62">varias fuentes</text>
+          <rect class="box alt" x="290" y="20" width="120" height="54" rx="8"/><text x="302" y="44">IA puntúa</text><text class="s" x="302" y="62">de 0 a 10</text>
+          <rect class="box" x="430" y="20" width="120" height="54" rx="8"/><text x="442" y="44">Planilla</text><text class="s" x="442" y="62">sin duplicados</text>
+          <rect class="box ok" x="290" y="124" width="260" height="54" rx="8"/><text x="302" y="148">Resumen por Telegram</text><text class="s" x="302" y="166">top 3 + borrador, yo apruebo</text>
+          <path class="ar" d="M130 47 H148" style="color:var(--ink)"/>
+          <path class="ar" d="M270 47 H288" style="color:var(--ink)"/>
+          <path class="ar" d="M410 47 H428" style="color:var(--ink)"/>
+          <path class="ar" d="M490 74 V122" style="color:var(--ink)"/>
+        </svg>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="codigo">
+  <div class="wrap">
+    <h2>Código público</h2>
+    <p class="intro">Proyectos personales y de formación que podés revisar línea por línea.</p>
+    <div class="repos">
+      <div class="repo">
+        <span class="kind">Proyecto personal</span>
+        <h3><a href="https://github.com/pablo-gabriel-garcia/aula-offline">AulaOffline</a></h3>
+        <p>Asistente educativo con IA para escuelas rurales que funciona sin internet, con un modelo local (Gemma vía Ollama), FastAPI y una interfaz web simple.</p>
+      </div>
+      <div class="repo">
+        <span class="kind">Ejercicio práctico</span>
+        <h3><a href="https://github.com/pablo-gabriel-garcia/openclaw-whatsapp-agent">Agente para WhatsApp Cloud API</a></h3>
+        <p>Servidor en Node.js que verifica el webhook de Meta, recibe mensajes y responde por la API oficial de WhatsApp.</p>
+      </div>
+      <div class="repo">
+        <span class="kind">Sitio propio</span>
+        <h3><a href="https://github.com/pablo-gabriel-garcia/web_PH_San_Carlos">Web de alquiler temporario</a></h3>
+        <p>Sitio de una sola página para un alquiler turístico en Mar del Plata: galería, comodidades, ubicación y contacto directo.</p>
+      </div>
+      <div class="repo">
+        <span class="kind">Formación</span>
+        <h3><a href="https://github.com/pablo-gabriel-garcia/challenge_trabajo_final_Alura">Encriptador de mensajes</a></h3>
+        <p>Desafío final del programa de formación de Alura: HTML, CSS y JavaScript sin librerías.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-trabajo">
+  <div class="wrap">
+    <h2>Cómo trabajo</h2>
+    <p class="intro">Antes de automatizar, entiendo el proceso. Lo aprendí en años de control de calidad: si el proceso está desordenado, la automatización solo lo desordena más rápido.</p>
+    <ol class="steps">
+      <li><h3>Relevo el proceso</h3><p>Qué entra, quién lo atiende, dónde se pierde tiempo o ventas.</p></li>
+      <li><h3>Diseño el flujo</h3><p>Un diagrama simple con lo que hace el bot y lo que queda en manos de una persona.</p></li>
+      <li><h3>Construyo por etapas</h3><p>Alcance y precio cerrados por etapa, con pruebas antes de pasar a producción.</p></li>
+      <li><h3>Entrego documentado</h3><p>Accesos, configuración y una guía para que tu equipo lo use sin depender de mí.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="herramientas">
+  <div class="wrap">
+    <h2>Herramientas</h2>
+    <p class="intro">Separo lo que uso en proyectos de lo que estoy aprendiendo.</p>
+    <div class="stack">
+      <div><h3>Automatización e IA</h3><ul><li>n8n</li><li>OpenAI API</li><li>WhatsApp Cloud API e Instagram (Meta)</li><li>Google Sheets, Gmail y Calendar</li></ul></div>
+      <div><h3>Desarrollo</h3><ul><li>Next.js y TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>Docker en servidor propio, Cloudflare</li></ul></div>
+      <div class="learning"><h3>Estoy aprendiendo</h3><ul><li>Modelos locales (Ollama)</li><li>MCP</li><li>LangGraph</li><li>Python para datos</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap about">
+    <div>
+      <h2 class="wide" style="font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin:0 0 18px;font-weight:760;letter-spacing:-.02em">Sobre mí</h2>
+      <p>Soy Técnico en Alimentos. Trabajé más de diez años en control de calidad y producción en la industria alimentaria y pesquera, y varios años en control de stock en farmacias. Desde ahí me pasé a la automatización: me formé en análisis de datos (Google, Coderhouse), n8n y agentes de IA.</p>
+      <p>Hoy armo bots y sistemas para negocios chicos y medianos. Me interesa que funcionen todos los días, que el equipo los entienda y que se puedan medir.</p>
+    </div>
+    <div class="contact">
+      <h3 style="margin:6px 0 12px;font-size:20px">¿Tenés un proceso para automatizar?</h3>
+      <p style="color:var(--slate);margin:0 0 18px">Contame qué querés resolver y te digo cómo lo encararía.</p>
+      <a class="btn" href="https://www.workana.com/freelancer/a5be90938b5fe4ca416ed84b7fa2a61c">Contratarme en Workana</a>
+      <a class="btn ghost" href="https://github.com/pablo-gabriel-garcia">Ver mi GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Pablo García, Mar del Plata, Argentina. Por confidencialidad no se muestran nombres ni datos de clientes.</div>
+</footer>
+
+<script>
+(function(){
+  var main=document.getElementById('crm-main'),cap=document.getElementById('crm-cap');
+  var first={src:main.getAttribute('src'),alt:main.getAttribute('alt'),cap:cap.textContent};
+  document.querySelectorAll('.thumbs button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')==='true';
+      document.querySelectorAll('.thumbs button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      if(on){main.src=first.src;main.alt=first.alt;cap.textContent=first.cap;return;}
+      b.setAttribute('aria-pressed','true');
+      main.src=b.dataset.src;main.alt=b.dataset.alt;cap.textContent=b.dataset.cap;
+    });
+  });
+})();
+</script>
+</body>
+</html>
